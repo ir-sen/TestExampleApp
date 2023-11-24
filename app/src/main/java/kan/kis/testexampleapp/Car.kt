@@ -1,7 +1,9 @@
 package kan.kis.testexampleapp
 
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class Car(
@@ -11,8 +13,11 @@ class Car(
 
     fun turnOn() {
         fuel -= 0.5
+        // we use coroutine to invoke suspend function
         CoroutineScope(Dispatchers.Main).launch {
-            engine.turnOn()
+            engine.turnOn().collect {temp ->
+                Log.d("COUESE", "collected engine temperature: $temp")
+            }
         }
     }
 

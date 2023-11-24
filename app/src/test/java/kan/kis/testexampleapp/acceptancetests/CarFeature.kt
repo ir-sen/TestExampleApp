@@ -17,6 +17,7 @@ class CarFeature {
     private val engine = Engine()
     val car = Car(fuel = 6.0, engine = engine)
 
+    // add rule to use coroutine
     @get:Rule
     var coroutinesTestRule = MainCoroutineScopeRule()
 
