@@ -32,10 +32,16 @@ class CarFeature {
     @Test
     fun carIsTurningOnItsEngineAndIncreasesTheTemperature() = runBlockingTest {
         car.turnOn()
+            // check flow value every emit every 2 seconds
+        coroutinesTestRule.advanceTimeBy(2000)
+        assertEquals(25, car.engine.temperature)
 
-        coroutinesTestRule.advanceTimeBy(7999)
+        coroutinesTestRule.advanceTimeBy(2000)
+        assertEquals(50, car.engine.temperature)
 
+        coroutinesTestRule.advanceTimeBy(2000)
         assertEquals(95, car.engine.temperature)
+
         assertTrue(car.engine.isTurnedOn)
     }
 

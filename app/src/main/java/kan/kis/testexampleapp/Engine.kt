@@ -11,7 +11,7 @@ class Engine(
 ) {
 
 
-    // create flow emmiter
+    // create flow emit
     suspend fun turnOn(): Flow<Int> {
         isTurnedOn = true
 

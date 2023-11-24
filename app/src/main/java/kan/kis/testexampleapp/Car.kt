@@ -15,6 +15,7 @@ class Car(
         fuel -= 0.5
         // we use coroutine to invoke suspend function
         CoroutineScope(Dispatchers.Main).launch {
+            // invoke flow
             engine.turnOn().collect {temp ->
                 Log.d("COUESE", "collected engine temperature: $temp")
             }
